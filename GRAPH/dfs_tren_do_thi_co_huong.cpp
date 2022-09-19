@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int n, m, s;
+bool visited[1001];
+vector<int> adj[1001];
+
+void inp()
+{
+    cin >> n >> m >> s;
+    memset(adj, 0, sizeof(adj));
+    for (int i = 1; i <= m; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+    }
+    memset(visited, false, sizeof(visited));
+}
+
+void dfs(int u)
+{
+    cout << u << " ";
+    visited[u] = true;
+    for (int x : adj[u])
+    {
+        if (!visited[x])
+        {
+            dfs(x);
+        }
+    }
+}
+
+int main()
+{
+    int t;
+    cin >> t;
+    while (t--)
+    {
+        inp();
+        dfs(s);
+        cout << endl;
+    }
+    return 0;
+}
